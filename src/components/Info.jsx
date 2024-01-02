@@ -46,6 +46,7 @@ const UserInfo = () => {
   </>;
 };
 
+//*using react map
 const Item = ({icon,label,value,color})=>{
   return <>
     <article className='item'>
