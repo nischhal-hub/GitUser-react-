@@ -5,8 +5,8 @@ const Error = () => {
   return <Wrapper>
   <div>
   <h1>404</h1>
-  <h3>Page not found</h3>
-  <Link to='/' className='btn'>Back to homepage.</Link>
+  <h3>The page you are trying to access in not found.</h3>
+  <Link to='/' className='btn'>Back</Link>
   </div>
   </Wrapper>;
 };
