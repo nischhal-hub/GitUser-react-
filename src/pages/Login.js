@@ -5,9 +5,9 @@ import loginImg from '../images/login-img.svg';
 const Login = () => {
   return <Wrapper>
     <div className='container'>
-      <img src={loginImg} alt='person using laptop'/>
+      <img src={loginImg} alt='person working on laptop'/>
       <h2>Github users</h2>
-      <button className='btn'>Login</button>
+      <button className='btn'>Login/Sign up</button>
     </div>
   </Wrapper>;
 };
