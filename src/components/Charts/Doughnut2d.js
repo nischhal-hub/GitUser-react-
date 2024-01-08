@@ -10,17 +10,16 @@ ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 const Doughnut2d  =({data})=>{
   const chartConfigs = {
-    type: 'pie2d',
-    width: 600,
+    type: 'doughnut2d',
+    width: '100%',
     height: 400,
     dataFormat: 'json',
     dataSource: {
       chart: {
-        caption: "Most Used Language",
-        // subCaption: "In MMbbl = One Million barrels",
-        // xAxisName: "Country",
-        // yAxisName: "Reserves (MMbbl)",
-        // numberSuffix: "K",
+        caption: "Stars per language",
+        decimals:0,
+        doughnutRadius:'45%',
+        showPercentValues:0,
         theme: "fusion",
       },
       data,
