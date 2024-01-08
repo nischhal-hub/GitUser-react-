@@ -8,9 +8,9 @@ const Followers = () => {
     <Wrapper>
       <div className="followers">
         {githubFollowers.map((item)=>{
-          const {avatar_url,html_url,login} = item
+          const {id,avatar_url,html_url,login} = item
           return<>
-            <article>
+            <article key={id}>
               <img src={avatar_url} alt={login} />
               <div>
                 <h4>{login}</h4>
