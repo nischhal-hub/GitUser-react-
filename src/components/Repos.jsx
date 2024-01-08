@@ -7,7 +7,7 @@ const Repos = () => {
   let languages = githubRepo.reduce((total,item)=>{
     const {language}= item
     if(!language)return total;
-    // console.log(language)
+    console.log(language)
     if(!total[language]){
       total[language]={label:language,value:1}
     }else{

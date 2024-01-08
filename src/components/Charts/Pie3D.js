@@ -16,7 +16,7 @@ const Pie3D =({data})=>{
     dataFormat: 'json',
     dataSource: {
       chart: {
-        caption: "Most Popular Language",
+        caption: "Languages",
         decimals:0,
         // subCaption: "In MMbbl = One Million barrels",
         // xAxisName: "Country",
