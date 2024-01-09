@@ -46,23 +46,8 @@ const Repos = () => {
     forks:{}
   })
   stars = Object.values(stars).splice(-5).reverse()
-  console.log(stars)
-  //console.log(mostStarred);
-  // const data = [
-  //   {
-  //     label: "Venezuela",
-  //     value: "200",
-  //   },
-  //   {
-  //     label: "Saudi",
-  //     value: "100",
-  //   },
-  //   {
-  //     label: "Canada",
-  //     value: "180",
-  //   },
-  // ]
-
+  forks = Object.values(forks).splice(-5).reverse()
+  
   return (
     <>
       <section className="section">
@@ -70,7 +55,7 @@ const Repos = () => {
           <Pie3D data={mostUsed} />
           <Column3D data={stars} />
           <Doughnut2D data={mostStarred} />
-          <div></div>
+          <Bar3D data={forks}/>
         </Wrapper>
       </section>
     </>
