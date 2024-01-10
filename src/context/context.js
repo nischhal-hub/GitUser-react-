@@ -13,7 +13,7 @@ const GithubProvider = ({ children }) => {
     const [githubRepo, setGithubRepo] = useState(mockRepos)
     const [githubFollowers, setGithubFollowers] = useState(mockFollowers)
     const [requests, setRequests] = useState(0)
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [error,setError]= useState({show:false, msg:""})
     useEffect(() => {
         checkRequests()
@@ -22,7 +22,6 @@ const GithubProvider = ({ children }) => {
     const checkRequests = () => {
         axios(`${rootUrl}/rate_limit`).then(({ data }) => {
             let { rate: { remaining } } = data;
-            remaining=0; 
             setRequests(remaining);
             if(remaining === 0){
                 toggleError(true,"You have excedded search limit!!!");
@@ -30,10 +29,28 @@ const GithubProvider = ({ children }) => {
         }).catch(err => console.log(err))
     }
 
-    const toggleError=(show=false,msg="")=>{
+    const toggleError=(show,msg)=>{
         setError({show,msg})
     }
-    return <GithubContext.Provider value={{ githubUser, githubRepo, githubFollowers, requests,error }}>
+
+    const searchUser=async(user)=>{
+        setLoading(true)   
+        try {
+            const resp = await axios(`${rootUrl}/users/${user}`)
+            if(resp){
+                setGithubUser(resp.data)
+                axios(`${rootUrl}/users/${user}/repos?per_page=100`).then(({data})=>setGithubRepo(data)).catch(err=>console.log(err))
+                axios(`${rootUrl}/users/${user}/followers`).then(({data})=>setGithubFollowers(data)).catch(err=>console.log(err))
+            }else{
+                toggleError(true,"User couldn't be found!!")
+            }
+        } catch (error) {
+            console.log(error)
+        }
+        setLoading(false)
+        checkRequests()
+    }
+    return <GithubContext.Provider value={{ githubUser, githubRepo, githubFollowers, requests,error,loading,searchUser }}>
         {children}
     </GithubContext.Provider>
 }

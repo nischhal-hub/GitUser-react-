@@ -3,20 +3,22 @@ import styled from "styled-components";
 import { MdSearch } from "react-icons/md";
 import { GithubContext, useGlobalContext } from "../context/context";
 const Search = () => {
-  const { githubUser, githubRepo, githubFollowers, requests, error } =
+  const { githubUser, githubRepo, githubFollowers, requests, error,searchUser } =
     useGlobalContext();
   const [user, setUser] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(user){
+    searchUser(user);}
   };
-
+  console.log(error)
   return (
     <section className="section">
       <Wrapper className="section-center">
       {error.show && (
         <ErrorWrapper>
-          <p>{error.msg}</p>
-        </ErrorWrapper>
+        <p>{error.msg}</p>
+      </ErrorWrapper>
       )}
         <form onSubmit={handleSubmit}>
           <div className="form-control">
@@ -110,6 +112,7 @@ const ErrorWrapper = styled.article`
   width: 90vw;
   top: 0;
   left: 0;
+  z-index:0;
   transform: translateY(-100%);
   text-transform: capitalize;
   p {
