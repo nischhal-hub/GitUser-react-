@@ -1,28 +1,29 @@
-import React from 'react';
-import { useGlobalContext } from '../context/context';
-import styled from 'styled-components';
+import React from "react";
+import { useGlobalContext } from "../context/context";
+import styled from "styled-components";
 
 const Followers = () => {
-  const {githubFollowers} = useGlobalContext();
-  return <>
-    <Wrapper>
-      <div className="followers">
-        {githubFollowers.map((item)=>{
-          const {id,avatar_url,html_url,login} = item
-          return<>
-            <article key={id}>
-              <img src={avatar_url} alt={login} />
-              <div>
-                <h4>{login}</h4>
-                <a href={html_url}>{html_url}</a>
-              </div>
-            </article>
-          </>
-        })}
-      </div>
-    </Wrapper>
-  </>
-  ;
+  const { githubFollowers } = useGlobalContext();
+  return (
+    <>
+      <Wrapper>
+        <div className="followers">
+          {githubFollowers.map((item) => {
+            const { id, avatar_url, html_url, login } = item;
+            return (
+              <article key={id}>
+                <img src={avatar_url} alt={login} />
+                <div>
+                  <h4>{login}</h4>
+                  <a href={html_url}>{html_url}</a>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </Wrapper>
+    </>
+  );
 };
 
 const Wrapper = styled.article`
@@ -33,7 +34,7 @@ const Wrapper = styled.article`
   position: relative;
 
   &::before {
-    content: ' followers';
+    content: " followers";
     position: absolute;
     top: 0;
     left: 0;
