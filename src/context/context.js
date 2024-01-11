@@ -44,8 +44,9 @@ const GithubProvider = ({ children }) => {
         console.log(resp)
         if (resp) {
             setGithubUser(resp.data)
-            axios(`${rootUrl}/users/${user}/repos?per_page=100`).then(({ data }) => setGithubRepo(data)).catch(err => console.log(err))
-            axios(`${rootUrl}/users/${user}/followers`).then(({ data }) => setGithubFollowers(data)).catch(err => console.log(err))
+            const {login,followers_url}= resp.data
+            axios(`${rootUrl}/users/${login}/repos?per_page=100`).then(({ data }) => setGithubRepo(data)).catch(err => console.log(err))
+            axios(`${followers_url}`).then(({ data }) => setGithubFollowers(data)).catch(err => console.log(err))
         } else {
             toggleError(true, "User couldn't be found!!")
         }
