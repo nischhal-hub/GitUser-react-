@@ -38,6 +38,7 @@ const GithubProvider = ({ children }) => {
 
     //searches user and sets user,followers and repo
     const searchUser = async (user) => {
+        toggleError();
         setLoading(true)
         //*remember to catch error here else the toggleError won't be executed as it response bad error.
         const resp = await axios(`${rootUrl}/users/${user}`).catch(err => console.log(err))
