@@ -13,7 +13,8 @@ root.render(
     domain="dev-rozv1qrclo3wmj1e.us.auth0.com"
     clientId="pOkxdTytYpHaPQwe8GNJWGeJ4dWjJYNR"
     authorizationParams={{
-      redirect_uri: window.location.origin
+      redirect_uri: window.location.origin,
+      cacheLocation: 'localstorage'
     }}
   >
     <GithubProvider>
