@@ -40,13 +40,24 @@ const GithubProvider = ({ children }) => {
     const searchUser = async (user) => {
         setLoading(true)
         //*remember to catch error here else the toggleError won't be executed as it response bad error.
-        const resp = await axios(`${rootUrl}/users/${user}`).catch(err=>console.log(err))
-        console.log(resp)
+        const resp = await axios(`${rootUrl}/users/${user}`).catch(err => console.log(err))
+        //console.log(resp)
         if (resp) {
             setGithubUser(resp.data)
-            const {login,followers_url}= resp.data
-            axios(`${rootUrl}/users/${login}/repos?per_page=100`).then(({ data }) => setGithubRepo(data)).catch(err => console.log(err))
-            axios(`${followers_url}`).then(({ data }) => setGithubFollowers(data)).catch(err => console.log(err))
+            const { login, followers_url } = resp.data
+            // axios(`${rootUrl}/users/${login}/repos?per_page=100`).then(({ data }) => setGithubRepo(data)).catch(err => console.log(err))
+            // axios(`${followers_url}`).then(({ data }) => setGithubFollowers(data)).catch(err => console.log(err))
+            await Promise.allSettled([axios(`${rootUrl}/users/${login}/repos?per_page=100`),axios(`${followers_url}?per_page=100`)]).then((values)=>{
+                const [repos, followers]= values
+                console.log(values)
+                const status = 'fulfilled'
+                if(repos.status === status){
+                    setGithubRepo(repos.value.data)
+                }
+                if(followers.status === status){
+                    setGithubFollowers(followers.value.data)
+                }
+            })
         } else {
             toggleError(true, "User couldn't be found!!")
         }
