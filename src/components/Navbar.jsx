@@ -1,14 +1,36 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useAuth0 } from '@auth0/auth0-react';
-import { useGlobalContext } from '../context/context';
+import React from "react";
+import styled from "styled-components";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useGlobalContext } from "../context/context";
 const Navbar = () => {
   const data = useGlobalContext();
-  return <>
-    <Wrapper>
-     <h2>Navbar</h2>
-    </Wrapper>
-  </>;
+  const { isAuthenticated, loginWithRedirect, logout, user, isLoading } =
+    useAuth0();
+  //console.log({ isAuthenticated, loginWithRedirect, logout, user, isLoading });
+  const isUser = isAuthenticated && user;
+  return (
+    <>
+      <Wrapper>
+        {isUser && user.picture && <img src={user.picture} alt={user.name} />}
+        {isUser && user.name && (
+          <h4>
+            Welcome, <strong>{user.name}</strong>
+          </h4>
+        )}
+        {isUser ? (
+          <button
+            onClick={() =>
+              logout({ logoutParams: { returnTo: window.location.origin } })
+            }
+          >
+            Log Out
+          </button>
+        ) : (
+          <button onClick={() => loginWithRedirect()}>Log In</button>
+        )}
+      </Wrapper>
+    </>
+  );
 };
 
 const Wrapper = styled.nav`

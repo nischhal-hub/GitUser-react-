@@ -49,7 +49,7 @@ const GithubProvider = ({ children }) => {
             // axios(`${followers_url}`).then(({ data }) => setGithubFollowers(data)).catch(err => console.log(err))
             await Promise.allSettled([axios(`${rootUrl}/users/${login}/repos?per_page=100`),axios(`${followers_url}?per_page=100`)]).then((values)=>{
                 const [repos, followers]= values
-                console.log(values)
+                //console.log(values)
                 const status = 'fulfilled'
                 if(repos.status === status){
                     setGithubRepo(repos.value.data)
@@ -65,9 +65,8 @@ const GithubProvider = ({ children }) => {
         checkRequests()
     }
 
-    const toggleError = (show, msg) => {
+    const toggleError = (show=false, msg="") => {
         setError({ show, msg })
-        console.log("I have been called!!")
     }
 
     return <GithubContext.Provider value={{ githubUser, githubRepo, githubFollowers, requests, error, loading, searchUser }}>
