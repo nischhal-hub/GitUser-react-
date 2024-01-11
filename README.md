@@ -1,3 +1,25 @@
+
+# GitUser
+Gituser provides the indepth info of your github profile with easy to understand charts and bargraphs. You can analyze your and anyones github profile with a simple search.This is a webapp created using React.
+Project inspired from jhon smilga.
+
+## Key features:
+- Login/Signup using auth0
+- Search github users
+- Easlily find users followers, no of repos,
+- Most popular languages of users in piechart
+- Most forked repos in bar
+- Stars per language
+- Most starred repo
+
+![Preview](https://scontent.fktm20-1.fna.fbcdn.net/v/t39.30808-6/418458643_948904576618832_3313753295515397954_n.jpg?_nc_cat=108&cb=99be929b-b574a898&ccb=1-7&_nc_sid=3635dc&_nc_eui2=AeHyHA1jl5lAuneCtsTSsHCXjIEj-wWfqkmMgSP7BZ-qSXeRUfCgy6NyDGXpB_aEii68idSOfBn1TAWrbe3AD84y&_nc_ohc=mpGCkConqIMAX_hdXkd&_nc_ht=scontent.fktm20-1.fna&oh=00_AfBuR7Z4v2Etjd75RxJ1IaNcKVJXudQdDACV22ayGbTScw&oe=65A5E5EC)
+
+
+
+You can fork the starter project file from [HERE 👈](https://github.com/john-smilga/starter-project-react-github-search-users)
+
+
+# Documentation
 ## Starter Project
 
 - css provided (global styles, styled components)
