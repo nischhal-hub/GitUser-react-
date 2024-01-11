@@ -3,15 +3,13 @@ import styled from "styled-components";
 import { MdSearch } from "react-icons/md";
 import { GithubContext, useGlobalContext } from "../context/context";
 const Search = () => {
-  const { githubUser, githubRepo, githubFollowers, requests, error,searchUser } =
-    useGlobalContext();
+  const { githubUser, githubRepo, githubFollowers, requests, error,searchUser } = useGlobalContext();
   const [user, setUser] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     if(user){
     searchUser(user);}
   };
-  console.log(error)
   return (
     <section className="section">
       <Wrapper className="section-center">

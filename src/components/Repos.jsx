@@ -25,7 +25,7 @@ const Repos = () => {
       return b.value - a.value;
     })
     .splice(0, 5);
-  console.log(languages);
+  //console.log(languages);
 
   const mostStarred = Object.values(languages)
     .sort((a, b) => {
