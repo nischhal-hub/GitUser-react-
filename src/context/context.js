@@ -32,18 +32,14 @@ const GithubProvider = ({ children }) => {
 
     const searchUser = async (user) => {
         setLoading(true)
-        try {
-            const resp = await axios(`${rootUrl}/users/${user}`)
-            console.log(resp)
-            if (resp) {
-                setGithubUser(resp.data)
-                axios(`${rootUrl}/users/${user}/repos?per_page=100`).then(({ data }) => setGithubRepo(data)).catch(err => console.log(err))
-                axios(`${rootUrl}/users/${user}/followers`).then(({ data }) => setGithubFollowers(data)).catch(err => console.log(err))
-            } else {
-                toggleError(true, "User couldn't be found!!")
-            }
-        } catch (error) {
-            console.log(error)
+        const resp = await axios(`${rootUrl}/users/${user}`).catch(err=>console.log(err))
+        console.log(resp)
+        if (resp) {
+            setGithubUser(resp.data)
+            axios(`${rootUrl}/users/${user}/repos?per_page=100`).then(({ data }) => setGithubRepo(data)).catch(err => console.log(err))
+            axios(`${rootUrl}/users/${user}/followers`).then(({ data }) => setGithubFollowers(data)).catch(err => console.log(err))
+        } else {
+            toggleError(true, "User couldn't be found!!")
         }
         setLoading(false)
         checkRequests()
