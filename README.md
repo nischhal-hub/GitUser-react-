@@ -1,7 +1,9 @@
 
-# GitUser
+# [GitUser](https://guser.netlify.app)
 Gituser provides the indepth info of your github profile with easy to understand charts and bargraphs. You can analyze your and anyones github profile with a simple search.This is a webapp created using React.
 Project inspired from jhon smilga.
+
+Visit the live site: [GitUser👈](https://guser.netlify.app)
 
 ## Key features:
 - Login/Signup using auth0
